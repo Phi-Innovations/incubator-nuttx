@@ -1688,6 +1688,15 @@ config ARCH_BOARD_STM32F4_DISCOVERY
 	---help---
 		STMicro STM32F4-Discovery board based on the STMicro STM32F407VGT6 MCU.
 
+config ARCH_BOARD_STM32F4_PHI_IOT_GATEWAY
+	bool "Phi Innovations IOT Gateway Board"
+	depends on ARCH_CHIP_STM32F417VE
+	select ARCH_HAVE_LEDS
+	select ARCH_HAVE_BUTTONS
+	select ARCH_HAVE_IRQBUTTONS
+	---help---
+		Phi-Innovations IOT Gateway Board based on the STMicro STM32F417VET6 MCU.
+
 config ARCH_BOARD_STM32F411E_DISCO
 	bool "STMicro STM32F411E-Discovery board"
 	depends on ARCH_CHIP_STM32F411VE
