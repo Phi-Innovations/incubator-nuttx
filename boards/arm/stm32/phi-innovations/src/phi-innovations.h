@@ -358,11 +358,6 @@
  * ---------- ------------- ------------------------------
  */
 
-#if defined(CONFIG_STM32F4DISBB) && defined(CONFIG_STM32_SDIO)
-#  define GPIO_SDIO_NCD   (GPIO_INPUT|GPIO_FLOAT|GPIO_EXTI|\
-                           GPIO_PORTB|GPIO_PIN15)
-#endif
-
 /* STM32F4DIS-BB LAN8720
  *
  * ---------- ------------- ------------------------------
