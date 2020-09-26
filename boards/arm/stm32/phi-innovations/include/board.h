@@ -268,6 +268,11 @@
 #define GPIO_USART3_RS485_DIR (GPIO_OUTPUT | GPIO_OUTPUT | GPIO_SPEED_50MHz | \
                                GPIO_OUTPUT_CLEAR | GPIO_PORTD | GPIO_PIN12)
 
+/* Wifi USART6 */
+
+#define GPIO_USART6_RX    GPIO_USART6_RX_1     /* PC7 (also I2S3_MCK and P2 pin 48) */
+#define GPIO_USART6_TX    GPIO_USART6_TX_1     /* PC6 (also P2 pin 47) */
+
 /* CAN */
 
 #ifndef CONFIG_STM32_FSMC
@@ -279,19 +284,6 @@
 #  define GPIO_CAN2_RX GPIO_CAN2_RX_1
 #  define GPIO_CAN2_TX GPIO_CAN2_TX_1
 #endif
-
-/* USART6:
- *
- * The STM32F4DIS-BB base board provides RS-232 drivers and a DB9 connector
- * for USART6.  This is the preferred serial console for use with the
- * STM32F4DIS-BB.
- *
- * NOTE: CTS and RTS are not brought out to the RS-232 connector on the
- * baseboard.
- */
-
-#define GPIO_USART6_RX    GPIO_USART6_RX_1     /* PC7 (also I2S3_MCK and P2 pin 48) */
-#define GPIO_USART6_TX    GPIO_USART6_TX_1     /* PC6 (also P2 pin 47) */
 
 /* PWM
  *
