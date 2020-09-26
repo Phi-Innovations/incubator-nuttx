@@ -248,6 +248,18 @@
 
 /* Alternate function pin selections ****************************************/
 
+/* USART 1 Console USART GPIO Configuration */
+
+#  define GPIO_USART1_RX    GPIO_USART1_RX_1     /* PA10 */
+#  define GPIO_USART1_TX    GPIO_USART1_TX_1     /* PA9 */
+
+/* HL6528 GSM USART2 GPIO Configuration */
+
+#  define GPIO_USART2_RX    GPIO_USART2_RX_1     /* PA3 */
+#  define GPIO_USART2_TX    GPIO_USART2_TX_2     /* PD5 */
+#  define GPIO_USART2_CTS   GPIO_USART2_CTS_2    /* PD3 */
+#  define GPIO_USART2_RTS   GPIO_USART2_RTS_2    /* PD4 */
+
 /* CAN */
 
 #ifndef CONFIG_STM32_FSMC

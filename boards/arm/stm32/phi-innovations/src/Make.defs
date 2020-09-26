@@ -183,6 +183,10 @@ CSRCS += stm32_netinit.c
 endif
 endif
 
+ifeq ($(CONFIG_DEV_GPIO),y)
+CSRCS += stm32_gpio.c
+endif
+
 ifeq ($(CONFIG_MMCSD_SPI),y)
 CSRCS += stm32_mmcsd.c
 endif
