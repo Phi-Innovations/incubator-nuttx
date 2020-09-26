@@ -386,7 +386,7 @@
 /* GPIO pins used by the GPIO Subsystem */
 
 #define BOARD_NGPIOIN     2 /* Amount of GPIO Input pins */
-#define BOARD_NGPIOOUT    1 /* Amount of GPIO Output pins */
+#define BOARD_NGPIOOUT    2 /* Amount of GPIO Output pins */
 #define BOARD_NGPIOINT    2 /* Amount of GPIO Input w/ Interruption pins */
 
 /* Digital Channel Input 1 */
@@ -399,10 +399,15 @@
 
 /* TODO: check OUT and INT GPIO */
 
-/* RF Chip Select */
+/* RF Chip Select - This pin is not connected*/
 
 #define GPIO_OUT1         (GPIO_OUTPUT | GPIO_OUTPUT | GPIO_SPEED_50MHz | \
                            GPIO_OUTPUT_SET | GPIO_PORTA | GPIO_PIN15)
+
+/* RF Shut Down */
+
+#define GPIO_OUT2         (GPIO_OUTPUT | GPIO_OUTPUT | GPIO_SPEED_50MHz | \
+                           GPIO_OUTPUT_SET | GPIO_PORTD | GPIO_PIN7)
 
 /* Configure Interrupt pin equal the two digital channel inputs */
 
