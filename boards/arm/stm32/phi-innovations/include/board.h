@@ -260,6 +260,14 @@
 #  define GPIO_USART2_CTS   GPIO_USART2_CTS_2    /* PD3 */
 #  define GPIO_USART2_RTS   GPIO_USART2_RTS_2    /* PD4 */
 
+
+/* RS485 USART3 */
+
+#define GPIO_USART3_TX        GPIO_USART3_TX_1     /* PB10 */
+#define GPIO_USART3_RX        GPIO_USART3_RX_3     /* PD9 */
+#define GPIO_USART3_RS485_DIR (GPIO_OUTPUT | GPIO_OUTPUT | GPIO_SPEED_50MHz | \
+                               GPIO_OUTPUT_CLEAR | GPIO_PORTD | GPIO_PIN12)
+
 /* CAN */
 
 #ifndef CONFIG_STM32_FSMC
@@ -271,44 +279,6 @@
 #  define GPIO_CAN2_RX GPIO_CAN2_RX_1
 #  define GPIO_CAN2_TX GPIO_CAN2_TX_1
 #endif
-
-/* USART2:
- *
- * The STM32F4 Discovery has no on-board serial devices, but the console is
- * brought out to PA2 (TX) and PA3 (RX) for connection to an external serial
- * device. (See the README.txt file for other options)
- *
- * These pins selections, however, conflict with pin usage on the
- * STM32F4DIS-BB.
- */
-
-#ifndef CONFIG_STM32F4DISBB
-#  define GPIO_USART2_RX  GPIO_USART2_RX_1     /* PA3, P1 pin 13 */
-#  define GPIO_USART2_TX  GPIO_USART2_TX_1     /* PA2, P1 pin 14 */
-#  define GPIO_USART2_CTS GPIO_USART2_CTS_1    /* PA0, P1 pin 11 */
-#  define GPIO_USART2_RTS GPIO_USART2_RTS_1    /* PA1, P1 pin 12 (conflict with USER button) */
-#endif
-
-/* USART3:
- *
- * Used in pseudoterm configuration and also with the BT860 HCI UART.
- * RTS/CTS Flow control support is needed by the HCI UART.
- *
- * There are conflicts with the STM32F4DIS-BB Ethernet in this configuration
- * when Ethernet is enabled:
- *
- *   PB-11 conflicts with Ethernet TXEN
- *   PB-13 conflicts with Ethernet TXD1
- *
- * UART3 TXD and RXD are available on CON4 PD8 and PD8 of the STM32F4DIS-BB,
- * respectively, but not CTS or RTS.  For now we assume that Ethernet is not
- * enabled if USART3 is used in a configuration with the STM32F4DIS-BB.
- */
-
-#define GPIO_USART3_TX    GPIO_USART3_TX_1     /* PB10, P1 pin 34 (also MP45DT02 CLK_IN) */
-#define GPIO_USART3_RX    GPIO_USART3_RX_1     /* PB11, P1 pin 35 */
-#define GPIO_USART3_CTS   GPIO_USART3_CTS_1    /* PB13, P1 pin 37 */
-#define GPIO_USART3_RTS   GPIO_USART3_RTS_1    /* PB14, P1 pin 38 */
 
 /* USART6:
  *
