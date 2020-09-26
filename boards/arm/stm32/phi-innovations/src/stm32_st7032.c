@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_st7032.c
+ * boards/arm/stm32/phi-innovations/src/stm32_st7032.c
  *
  *   Copyright (C) 2018 Alan Carvalho de Assis. All rights reserved.
  *   Author: Alan Carvalho de Assis <acassis@gmail.com>
@@ -46,7 +46,7 @@
 #include <nuttx/lcd/st7032.h>
 
 #include "stm32.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #if defined(CONFIG_I2C) && defined(CONFIG_STM32_I2C1) && \
     defined(CONFIG_LCD_ST7032)

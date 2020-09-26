@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_userleds.c
+ * boards/arm/stm32/phi-innovations/src/stm32_userleds.c
  *
  *   Copyright (C) 2011, 2015-2016 Gregory Nutt. All rights reserved.
  *   Author: Gregory Nutt <gnutt@nuttx.org>
@@ -52,7 +52,7 @@
 #include "arm_internal.h"
 
 #include "stm32.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #ifndef CONFIG_ARCH_LEDS
 
@@ -184,6 +184,7 @@ uint32_t board_userled_initialize(void)
   stm32_configgpio(GPIO_LED2);
   stm32_configgpio(GPIO_LED3);
   stm32_configgpio(GPIO_LED4);
+  stm32_configgpio(GPIO_LED5);
   return BOARD_NLEDS;
 }
 
@@ -209,6 +210,7 @@ void board_userled_all(uint32_t ledset)
   stm32_gpiowrite(GPIO_LED2, (ledset & BOARD_LED2_BIT) == 0);
   stm32_gpiowrite(GPIO_LED3, (ledset & BOARD_LED3_BIT) == 0);
   stm32_gpiowrite(GPIO_LED4, (ledset & BOARD_LED4_BIT) == 0);
+  stm32_gpiowrite(GPIO_LED5, (ledset & BOARD_LED5_BIT) == 0);
 }
 
 /****************************************************************************

@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_xen1210.c
+ * boards/arm/stm32/phi-innovations/src/stm32_xen1210.c
  *
  *   Copyright (C) 2016 Gregory Nutt. All rights reserved.
  *   Author:  Alan Carvalho de Assis <acassis@gmail.com>
@@ -47,7 +47,7 @@
 #include <nuttx/wireless/bluetooth/bt_uart.h>
 
 #include "stm32_hciuart.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #include <arch/board/board.h>
 

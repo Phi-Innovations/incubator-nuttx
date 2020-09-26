@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_pm_buttons.c
+ * boards/arm/stm32/phi-innovations/src/stm32_pm_buttons.c
  *
  *   Copyright (C) 2012, 2015-2017 Gregory Nutt. All rights reserved.
  *   Authors: Gregory Nutt <gnutt@nuttx.org>
@@ -52,7 +52,7 @@
 #include "nvic.h"
 #include "stm32_pwr.h"
 #include "stm32_pm.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #if defined(CONFIG_PM) && defined(CONFIG_ARCH_IDLE_CUSTOM) && defined(CONFIG_PM_BUTTONS)
 

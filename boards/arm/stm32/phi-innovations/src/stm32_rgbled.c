@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_rgbled.c
+ * boards/arm/stm32/phi-innovations/src/stm32_rgbled.c
  *
  *   Copyright (C) 2016 Gregory Nutt. All rights reserved.
  *   Author: Alan Carvalho de Assis <acassis@gmail.com>
@@ -50,7 +50,7 @@
 #include "chip.h"
 #include "arm_arch.h"
 #include "stm32_pwm.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 /****************************************************************************
  * Pre-processor Definitions

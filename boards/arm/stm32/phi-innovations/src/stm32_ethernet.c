@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_ethernet.c
+ * boards/arm/stm32/phi-innovations/src/stm32_ethernet.c
  *
  *   Copyright (C) 2015, 2017 Gregory Nutt. All rights reserved.
  *   Author: Gregory Nutt <gnutt@nuttx.org>
@@ -61,7 +61,11 @@
 #include "stm32_gpio.h"
 #include "stm32_eth.h"
 
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
+
+#ifdef HAVE_NETMONITOR 
+#error "HAVE_NETMONITOR"
+#endif
 
 #if defined(CONFIG_STM32F4DISBB) && defined(CONFIG_STM32_ETHMAC)
 

@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_pca9635.c
+ * boards/arm/stm32/phi-innovations/src/stm32_pca9635.c
  *
  *   Copyright (C) 2014, 2016 Gregory Nutt. All rights reserved.
  *   Author: Gregory Nutt <gnutt@nuttx.org>
@@ -51,7 +51,7 @@
 
 #include "stm32_gpio.h"
 #include "stm32_i2c.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #ifdef CONFIG_PCA9635PW
 

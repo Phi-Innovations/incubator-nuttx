@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_ds1307.c
+ * boards/arm/stm32/phi-innovations/src/stm32_ds1307.c
  *
  *   Copyright (C) 2019 Alan Carvalho de Assis. All rights reserved.
  *   Author: Alan Carvalho de Assis <acassis@gmail.com>
@@ -48,7 +48,7 @@
 
 #include "stm32.h"
 #include "stm32_i2c.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #if defined(CONFIG_I2C) && defined(CONFIG_RTC_DS1307)
 

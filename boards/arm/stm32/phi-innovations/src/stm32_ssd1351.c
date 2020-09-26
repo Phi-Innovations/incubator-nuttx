@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_ssd1351.c
+ * boards/arm/stm32/phi-innovations/src/stm32_ssd1351.c
  *
  *   Copyright (C) 2012 Gregory Nutt. All rights reserved.
  *   Copyright (C) 2015 Omni Hoverboards Inc. All rights reserved.
@@ -52,7 +52,7 @@
 #include "stm32_gpio.h"
 #include "stm32_spi.h"
 
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #ifdef CONFIG_LCD_SSD1351
 

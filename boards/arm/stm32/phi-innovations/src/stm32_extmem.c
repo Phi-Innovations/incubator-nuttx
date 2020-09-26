@@ -49,7 +49,7 @@
 #include "arm_arch.h"
 
 #include "stm32.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 /****************************************************************************
  * Pre-processor Definitions

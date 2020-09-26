@@ -1,5 +1,5 @@
 /*****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_mmcsd.c
+ * boards/arm/stm32/phi-innovations/src/stm32_mmcsd.c
  *
  *   Copyright 2019 Sony Home Entertainment & Sound Products Inc.
  *   Author: Masayuki Ishikawa <Masayuki.Ishikawa@jp.sony.com>
@@ -56,7 +56,7 @@
 #include "stm32.h"
 
 #include <arch/board/board.h>
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 /*****************************************************************************
  * Pre-processor Definitions

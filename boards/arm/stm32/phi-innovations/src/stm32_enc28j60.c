@@ -50,7 +50,7 @@
 #include "arm_internal.h"
 #include "stm32_spi.h"
 
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #ifdef CONFIG_ENC28J60
 

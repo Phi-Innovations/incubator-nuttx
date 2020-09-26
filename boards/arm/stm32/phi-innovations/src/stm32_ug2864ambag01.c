@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_ug2864ambag01.c
+ * boards/arm/stm32/phi-innovations/src/stm32_ug2864ambag01.c
  *
  *   Copyright (C) 2012 Gregory Nutt. All rights reserved.
  *   Author: Gregory Nutt <gnutt@nuttx.org>
@@ -49,7 +49,7 @@
 #include "stm32_gpio.h"
 #include "stm32_spi.h"
 
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #ifdef CONFIG_LCD_UG2864AMBAG01
 
@@ -91,7 +91,7 @@
  * -------------------------------------------------------------------------
  */
 
-/* Definitions in stm32f4discovery.h */
+/* Definitions in phi-innovations.h */
 
 /****************************************************************************
  * Public Functions

@@ -253,7 +253,7 @@ Nintendo Wii Nunchuck:
     CONFIG_EXAMPLES_NUNCHUCK_DEVNAME="/dev/nunchuck0"
 
   You need to connect GND and +3.3V pins from Nunchuck connector to GND and 3V
-  of stm32f4discovery respectively (Nunchuck also can work connected to 5V, but
+  of phi-innovations respectively (Nunchuck also can work connected to 5V, but
   I don't recommend it). Connect I2C Clock from Nunchuck to SCK (PB6) and the
   I2C Data to SDA (PB9).
 
@@ -521,7 +521,7 @@ MAPPING TO STM32 F4:
    4 Also the reset pin for the CS43L22 audio Codec.
 
 NOTE:  The configuration to test this LCD configuration is available at
-boards/arm/stm32/stm32f4discovery/nxlines.  As of this writing, I have not seen the
+boards/arm/stm32/phi-innovations/nxlines.  As of this writing, I have not seen the
 LCD working so I probably have some things wrong.
 
 I might need to use a bit-banging interface.  Below is the pin configuration
@@ -617,7 +617,7 @@ that I am using:
 
 Darcy Gong recently added support for the UG-2864HSWEG01 OLED which is also
 an option with this configuration.  I have little technical information about
-the UG-2864HSWEG01 interface (see boards/arm/stm32/stm32f4discovery/src/up_ug2864hsweg01.c).
+the UG-2864HSWEG01 interface (see boards/arm/stm32/phi-innovations/src/up_ug2864hsweg01.c).
 
 NiceRF LoRa (2AD66-LoRa V2)
 ===========================
@@ -811,7 +811,7 @@ STM32F4Discovery-specific Configuration Options
 
     CONFIG_ARCH_BOARD_name - For use in C code
 
-       CONFIG_ARCH_BOARD_STM32F4_DISCOVERY=y
+       CONFIG_ARCH_BOARD_STM32F4_PHI_IOT_GATEWAY=y
 
     CONFIG_ARCH_LOOPSPERMSEC - Must be calibrated for correct operation
        of delay loops
@@ -1025,7 +1025,7 @@ STM32F4Discovery-specific Configuration Options
 
 BASIC
 =====
-  I have used the stm32f4discovery/nsh configuration to test Michael Haardt's
+  I have used the phi-innovations/nsh configuration to test Michael Haardt's
   BASIC interpreter that you can find at apps/interpreters/bas.
 
     Bas is an interpreter for the classic dialect of the programming language
@@ -1043,7 +1043,7 @@ BASIC
   Configuration
   -------------
   Below are the recommended configuration changes to use BAS with the
-  stm32f4discovery/nsh configuration:
+  phi-innovations/nsh configuration:
 
   Dependencies:
     CONFIG_LIBC_EXECFUNCS=y      : exec*() functions are required
@@ -1147,7 +1147,7 @@ Enter inside NuttX and compile it:
 
     $ cd ../nuttx
 
-    $ tools/configure.sh stm32f4discovery:testlibcxx
+    $ tools/configure.sh phi-innovations:testlibcxx
       Copy files
       Refreshing...
 
@@ -1451,7 +1451,7 @@ Configuration Sub-directories
        The HCI UART selection can be changed by re-configuring and assigning
        the different U[S]ART to the HCI.  The U[S]ART pin selections can be
        changed by modifying the disambiguation definitions in
-       boards/arm/stm32/stm32f4discovery/include/board.h
+       boards/arm/stm32/phi-innovations/include/board.h
 
        I have been testing with the DVK_BT960_SA board via J10 as follows:
 
@@ -2332,7 +2332,7 @@ Configuration Sub-directories
 
     This is another NSH example.  If differs from other 'nsh' configurations
     in that this configurations uses a USB serial device for console I/O.
-    Such a configuration is useful on the stm32f4discovery which has no
+    Such a configuration is useful on the phi-innovations which has no
     builtin RS-232 drivers.
 
     NOTES:

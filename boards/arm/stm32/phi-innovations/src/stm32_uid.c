@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_uid.c
+ * boards/arm/stm32/phi-innovations/src/stm32_uid.c
  *
  *   Copyright (C) 2015 Marawan Ragab. All rights reserved.
  *   Author: Marawan Ragab <marawan31@gmail.com>

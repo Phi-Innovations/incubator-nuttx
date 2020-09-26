@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_bringup.c
+ * boards/arm/stm32/phi-innovations/src/stm32_bringup.c
  *
  *   Copyright (C) 2012, 2014-2018 Gregory Nutt. All rights reserved.
  *   Author: Gregory Nutt <gnutt@nuttx.org>
@@ -68,11 +68,11 @@
 #  include <nuttx/usb/rndis.h>
 #endif
 
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
-/* Conditional logic in stm32f4discovery.h will determine if certain features
+/* Conditional logic in phi-innovations.h will determine if certain features
  * are supported.  Tests for these features need to be made after including
- * stm32f4discovery.h.
+ * phi-innovations.h.
  */
 
 #ifdef HAVE_RTC_DRIVER
@@ -480,7 +480,7 @@ int stm32_bringup(void)
 
 #ifdef CONFIG_LIS3DSH
   /* Create a lis3dsh driver instance fitting the chip built into
-   * stm32f4discovery
+   * phi-innovations
    */
 
   ret = board_lis3dsh_initialize(0, 1);

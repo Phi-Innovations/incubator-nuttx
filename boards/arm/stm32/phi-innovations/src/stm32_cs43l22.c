@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_cs43l22.c
+ * boards/arm/stm32/phi-innovations/src/stm32_cs43l22.c
  *
  *   Copyright (C) 2017 Gregory Nutt. All rights reserved.
  *   Author: Taras Drozdovskiy <t.drozdovskiy@gmail.com>
@@ -54,7 +54,7 @@
 #include <arch/board/board.h>
 
 #include "stm32.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #ifdef HAVE_CS43L22
 
@@ -72,7 +72,7 @@ struct stm32_mwinfo_s
 
   struct cs43l22_lower_s lower;
 
-  /* Extensions for the stm32f4discovery board */
+  /* Extensions for the phi-innovations board */
 
   cs43l22_handler_t handler;
   FAR void *arg;

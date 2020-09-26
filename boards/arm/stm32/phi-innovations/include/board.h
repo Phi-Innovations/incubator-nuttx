@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/include/board.h
+ * boards/arm/stm32/phi-innovations/include/board.h
  *
  *   Copyright (C) 2012, 2014-2016, 2018 Gregory Nutt. All rights reserved.
  *   Author: Gregory Nutt <gnutt@nuttx.org>
@@ -206,7 +206,8 @@
 #define BOARD_LED2        1
 #define BOARD_LED3        2
 #define BOARD_LED4        3
-#define BOARD_NLEDS       4
+#define BOARD_LED5        4
+#define BOARD_NLEDS       5
 
 #define BOARD_LED_GREEN   BOARD_LED1
 #define BOARD_LED_ORANGE  BOARD_LED2
@@ -215,13 +216,16 @@
 
 /* LED bits for use with board_userled_all() */
 
+/* TODO: Check the color of each leds in the board */
+
 #define BOARD_LED1_BIT    (1 << BOARD_LED1)
 #define BOARD_LED2_BIT    (1 << BOARD_LED2)
 #define BOARD_LED3_BIT    (1 << BOARD_LED3)
 #define BOARD_LED4_BIT    (1 << BOARD_LED4)
+#define BOARD_LED5_BIT    (1 << BOARD_LED5)
 
 /* If CONFIG_ARCH_LEDs is defined, then NuttX will control the 4 LEDs on
- * board the stm32f4discovery.  The following definitions describe how NuttX
+ * board the phi-innovations.  The following definitions describe how NuttX
  * controls the LEDs:
  */
 
@@ -364,7 +368,7 @@
 #define DMACHAN_I2S3_RX   DMAMAP_SPI3_RX_2
 #define DMACHAN_I2S3_TX   DMAMAP_SPI3_TX_2
 
-/* I2C.  Only I2C1 is available on the stm32f4discovery.  I2C1_SCL and
+/* I2C.  Only I2C1 is available on the phi-innovations.  I2C1_SCL and
  * I2C1_SDA are available on the following pins:
  *
  * - PB6  is I2C1_SCL

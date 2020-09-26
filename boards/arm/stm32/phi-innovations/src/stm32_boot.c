@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_boot.c
+ * boards/arm/stm32/phi-innovations/src/stm32_boot.c
  *
  *   Copyright (C) 2011-2012, 2015, 2018 Gregory Nutt. All rights reserved.
  *   Author: Gregory Nutt <gnutt@nuttx.org>
@@ -49,7 +49,7 @@
 #include "itm.h"
 
 #include "stm32.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 /****************************************************************************
  * Public Functions

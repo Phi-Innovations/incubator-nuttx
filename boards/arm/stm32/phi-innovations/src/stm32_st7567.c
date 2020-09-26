@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_st7567.c
+ * boards/arm/stm32/phi-innovations/src/stm32_st7567.c
  *
  *   Copyright (C) 2016 Uniquix Tecnologia. All rights reserved.
  *   Author: Alan Carvalho de Assis <acassis@gmail.com>
@@ -62,7 +62,7 @@
 
 #include "stm32_gpio.h"
 #include "stm32_spi.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #ifdef CONFIG_LCD_ST7567
 

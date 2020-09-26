@@ -1690,7 +1690,7 @@ config ARCH_BOARD_STM32F4_DISCOVERY
 
 config ARCH_BOARD_STM32F4_PHI_IOT_GATEWAY
 	bool "Phi Innovations IOT Gateway Board"
-	depends on ARCH_CHIP_STM32F417VE
+	depends on ARCH_CHIP_STM32F407VG
 	select ARCH_HAVE_LEDS
 	select ARCH_HAVE_BUTTONS
 	select ARCH_HAVE_IRQBUTTONS
@@ -2319,6 +2319,7 @@ config ARCH_BOARD
 	default "stm32f3discovery"         if ARCH_BOARD_STM32F3_DISCOVERY
 	default "stm32f334-disco"          if ARCH_BOARD_STM32F334_DISCO
 	default "stm32f4discovery"         if ARCH_BOARD_STM32F4_DISCOVERY
+	default "phi-innovations"          if ARCH_BOARD_STM32F4_PHI_IOT_GATEWAY
 	default "stm32f411e-disco"         if ARCH_BOARD_STM32F411E_DISCO
 	default "stm32f429i-disco"         if ARCH_BOARD_STM32F429I_DISCO
 	default "stm32f746g-disco"         if ARCH_BOARD_STM32F746G_DISCO
@@ -2833,6 +2834,10 @@ endif
 if ARCH_BOARD_STM32F4_DISCOVERY
 source "boards/arm/stm32/stm32f4discovery/Kconfig"
 endif
+if ARCH_BOARD_STM32F4_PHI_IOT_GATEWAY
+source "boards/arm/stm32/phi-innovations/Kconfig"
+endif
+
 if ARCH_BOARD_STM32L_DISCOVERY
 source "boards/arm/stm32/stm32ldiscovery/Kconfig"
 endif

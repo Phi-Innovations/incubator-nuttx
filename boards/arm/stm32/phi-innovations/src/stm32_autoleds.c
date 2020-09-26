@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32/stm32f4discovery/src/stm32_autoleds.c
+ * boards/arm/stm32/phi-innovations/src/stm32_autoleds.c
  *
  *   Copyright (C) 2011-2013, 2015 Gregory Nutt. All rights reserved.
  *   Author: Gregory Nutt <gnutt@nuttx.org>
@@ -50,7 +50,7 @@
 #include "arm_arch.h"
 #include "arm_internal.h"
 #include "stm32.h"
-#include "stm32f4discovery.h"
+#include "phi-innovations.h"
 
 #ifdef CONFIG_ARCH_LEDS
 
@@ -64,6 +64,7 @@
 #define STM32F4_LED2      (1 << 1)
 #define STM32F4_LED3      (1 << 2)
 #define STM32F4_LED4      (1 << 3)
+#define STM32F4_LED5      (1 << 4)
 
 #define ON_SETBITS_SHIFT  (0)
 #define ON_CLRBITS_SHIFT  (4)
@@ -176,6 +177,10 @@ static inline void led_clrbits(unsigned int clrbits)
     {
       stm32_gpiowrite(GPIO_LED4, false);
     }
+  if ((clrbits & STM32F4_LED5) != 0)
+    {
+      stm32_gpiowrite(GPIO_LED5, false);
+    }
 }
 
 static inline void led_setbits(unsigned int setbits)
@@ -198,6 +203,10 @@ static inline void led_setbits(unsigned int setbits)
   if ((setbits & STM32F4_LED4) != 0)
     {
       stm32_gpiowrite(GPIO_LED4, true);
+    }
+  if ((setbits & STM32F4_LED5) != 0)
+    {
+      stm32_gpiowrite(GPIO_LED5, true);
     }
 }
 
@@ -223,6 +232,7 @@ void board_autoled_initialize(void)
    stm32_configgpio(GPIO_LED2);
    stm32_configgpio(GPIO_LED3);
    stm32_configgpio(GPIO_LED4);
+   stm32_configgpio(GPIO_LED5);
 }
 
 /****************************************************************************
