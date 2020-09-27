@@ -489,11 +489,11 @@ config M25P_SUBSECTOR_ERASE
 endif # MTD_M25P
 
 config MTD_MX25L
-	bool "SPI-based MX25L3233F / MX25L6433F"
+	bool "SPI-based MX25L8006E / MX25L3233F / MX25L6433F"
 	default n
 	select SPI
 	---help---
-		SPI-based driver for Macronix MX25L3233F or MX25L6433F.
+		SPI-based driver for Macronix MX25L8006E, MX25L3233F or MX25L6433F.
 
 if MTD_MX25L
 
