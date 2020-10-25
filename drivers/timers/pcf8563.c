@@ -40,6 +40,7 @@
 #include <nuttx/config.h>
 
 #include <stdbool.h>
+#include <strings.h>
 #include <time.h>
 #include <errno.h>
 #include <debug.h>
@@ -257,6 +258,8 @@ int up_rtc_getdatetime(FAR struct tm *tp)
   uint8_t seconds;
   int ret;
 
+  memset(tp, 0, sizeof(struct tm ));
+
   /* If this function is called before the RTC has been initialized (and it will be),
    * then just return the data/time of the epoch, 12:00 am, Jan 1, 1970.
    */
@@ -319,7 +322,7 @@ int up_rtc_getdatetime(FAR struct tm *tp)
       ret = I2C_TRANSFER(g_pcf8563.i2c, msg, 4);
       if (ret < 0)
         {
-          rtcerr("ERROR: I2C_TRANSFER failed: %d\n", ret)
+          rtcerr("ERROR: I2C_TRANSFER failed: %d\n", ret);
           return ret;
         }
     }
@@ -352,11 +355,26 @@ int up_rtc_getdatetime(FAR struct tm *tp)
 
   tp->tm_mon = rtc_bcd2bin(buffer[5] & PCF8563_RTC_MONTHS_MASK) - 1;
 
-  /* Return the years since 1900.  The RTC will hold years since 1968 (a leap year
-   * like 2000).
-   */
+  /* Return the years since 1900.  The RTC will hold years since 2000 (a leap year) */
 
-  tp->tm_year = rtc_bcd2bin(buffer[6]) + 68;
+  tp->tm_year = rtc_bcd2bin(buffer[6]) + 100;
+
+  /* check century bit in month register */
+  if (buffer[5] & PCF8563_RTC_CENTURY)
+    tp->tm_year += 100;
+
+/* Check clock integrity bit in Second Register.
+ * If this bit is 1, the integrity if not guaranteed. 
+ * In this driver, we will just make a warning and no other
+ * operation will be performed. Maybe in a production version, 
+ * will be necessary to create a ioctl to probe this bit and
+ * perform the right operation.
+ */
+
+  if (buffer[0] & PCF8563_RTC_SECONDS_VL)
+    {
+      _warn("Warning: PCF8563 RTC integrity is not guaranteed (bit 7 in VL_SECONDS register is set)\n.");
+    }
 
   rtc_dumptime(tp, "Returning");
   return OK;
@@ -382,7 +400,7 @@ int up_rtc_settime(FAR const struct timespec *tp)
   struct i2c_msg_s msg[3];
   struct tm newtm;
   time_t newtime;
-  uint8_t buffer[9];
+  uint8_t buffer[8];
   uint8_t cmd;
   uint8_t seconds;
   int ret;
@@ -396,8 +414,6 @@ int up_rtc_settime(FAR const struct timespec *tp)
       return -EAGAIN;
     }
 
-  rtc_dumptime(tp, "Setting time");
-
   /* Get the broken out time */
 
   newtime = (time_t)tp->tv_sec;
@@ -410,49 +426,55 @@ int up_rtc_settime(FAR const struct timespec *tp)
 
   if (localtime_r(&newtime, &newtm) == NULL)
     {
-      rtcerr("ERROR: localtime_r failed\n")
+      rtcerr("ERROR: localtime_r failed\n");
       return -EINVAL;
     }
 
-  rtc_dumptime(&tm, "New time");
+  rtc_dumptime(&newtm, "New time");
 
   /* Construct the message */
 
-  /* Write starting with the 100ths of seconds register */
+  /* Write starting with the seconds register */
 
-  buffer[0] = PCF8563_RTC_100TH_SECONDS;
-
-  /* Clear the 100ths of seconds */
-
-  buffer[1] = 0;
+  buffer[0] = PCF8563_RTC_SECONDS;
 
   /* Save seconds (0-59) converted to BCD */
 
-  buffer[2] = rtc_bin2bcd(newtm.tm_sec);
+  buffer[1] = rtc_bin2bcd(newtm.tm_sec);
 
   /* Save minutes (0-59) converted to BCD */
 
-  buffer[3] = rtc_bin2bcd(newtm.tm_min);
+  buffer[2] = rtc_bin2bcd(newtm.tm_min);
 
   /* Save hour (0-23) with 24-hour time indication */
 
-  buffer[4] = rtc_bin2bcd(newtm.tm_hour);
+  buffer[3] = rtc_bin2bcd(newtm.tm_hour);
 
   /* Save the day of the month (1-31) */
 
-  buffer[5] = rtc_bin2bcd(newtm.tm_mday);
+  buffer[4] = rtc_bin2bcd(newtm.tm_mday);
 
   /* Save the day of the week (1-7) */
 
-  buffer[6] = rtc_bin2bcd(newtm.tm_wday);
+  buffer[5] = rtc_bin2bcd(newtm.tm_wday);
 
   /* Save the month (1-12) */
 
-  buffer[7] = rtc_bin2bcd(newtm.tm_mon + 1);
+  buffer[6] = rtc_bin2bcd(newtm.tm_mon + 1);
 
-  /* Save the year.  Use years since 1968 (a leap year like 2000) */
+  /* The century bit is in the month register (bit 7).
+   * Set this bit if the year is greater than 2100 
+   */
 
-  buffer[8] = rtc_bin2bcd(newtm.tm_year - 68);
+  if (newtm.tm_year > 199)  /* tm_year 0 is 1900 */
+    buffer[6] |= PCF8563_RTC_CENTURY;
+
+  /* Save the year.  Use years since 2000 (a leap year) */
+  /* The operation below prevent that an year greater than 99
+   * may by write in the register 
+   */
+
+  buffer[7] = rtc_bin2bcd((newtm.tm_year - 100) % 100);
 
   /* Setup the I2C message */
 
@@ -460,7 +482,7 @@ int up_rtc_settime(FAR const struct timespec *tp)
   msg[0].addr      = PCF8563_I2C_ADDRESS;
   msg[0].flags     = 0;
   msg[0].buffer    = buffer;
-  msg[0].length    = 9;
+  msg[0].length    = 8;
 
   /* Read back the seconds register */
 
@@ -487,11 +509,11 @@ int up_rtc_settime(FAR const struct timespec *tp)
       ret = I2C_TRANSFER(g_pcf8563.i2c, msg, 3);
       if (ret < 0)
         {
-          rtcerr("ERROR: I2C_TRANSFER failed: %d\n", ret)
+          rtcerr("ERROR: I2C_TRANSFER failed: %d\n", ret);
           return ret;
         }
     }
-  while ((buffer[2] & PCF8563_RTC_SECONDS_MASK) >
+  while ((buffer[1] & PCF8563_RTC_SECONDS_MASK) >
          (seconds & PCF8563_RTC_SECONDS_MASK));
 
   return OK;

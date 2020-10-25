@@ -528,16 +528,26 @@ int stm32_bringup(void)
 
 #ifdef CONFIG_MTD_MX25L
   /* Initialize a SPI FLASH block device mx25l MTD driver */
-  {
-    ret = stm32_mx25l_initialize(0);
+  ret = stm32_mx25l_initialize(0);
 
-    if (ret < 0)
-      {
-        syslog(LOG_ERR, "ERROR: Failed to initialize mx25l MTD Flash driver:"
-                      " %d\n", ret);
-      }
-  }
+  if (ret < 0)
+    {
+      syslog(LOG_ERR, "ERROR: Failed to initialize mx25l MTD Flash driver:"
+                    " %d\n", ret);
+    }
 #endif /* CONFIG_MTD_MX25L */
+
+#ifdef CONFIG_RTC_PCF8563
+  /* Initialize a PCF8563 RTC device driver */
+
+  ret = stm32_pcf8563_init();
+  if (ret < 0)
+    {
+      syslog(LOG_ERR, "ERROR: stm32_pcf8563_init() failed: %d\n",
+              ret);
+    }
+
+#endif
 
   return ret;
 }
