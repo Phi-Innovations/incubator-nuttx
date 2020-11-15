@@ -362,7 +362,7 @@
 /* GPIO pins used by the GPIO Subsystem */
 
 #define BOARD_NGPIOIN     2 /* Amount of GPIO Input pins */
-#define BOARD_NGPIOOUT    2 /* Amount of GPIO Output pins */
+#define BOARD_NGPIOOUT    5 /* Amount of GPIO Output pins */
 #define BOARD_NGPIOINT    2 /* Amount of GPIO Input w/ Interruption pins */
 
 /* Digital Channel Input 1 */
@@ -384,6 +384,21 @@
 
 #define GPIO_OUT2         (GPIO_OUTPUT | GPIO_OUTPUT | GPIO_SPEED_50MHz | \
                            GPIO_OUTPUT_SET | GPIO_PORTD | GPIO_PIN7)
+
+/* GSM_VBATT_ON - This pin powers the GPRS module (active high) */
+
+#define GPIO_OUT3         (GPIO_OUTPUT | GPIO_OUTPUT | GPIO_SPEED_50MHz | \
+                           GPIO_OUTPUT_CLEAR | GPIO_PORTE | GPIO_PIN10)
+
+/* GSM_PWRON_HL - This pin enable the GPRS module (active low) */
+
+#define GPIO_OUT4         (GPIO_OUTPUT | GPIO_OUTPUT | GPIO_SPEED_50MHz | \
+                           GPIO_OUTPUT_SET | GPIO_PORTE | GPIO_PIN9)
+
+/* GSM_RST - This pin resets the GPRS module (active low) */
+
+#define GPIO_OUT5         (GPIO_OUTPUT | GPIO_OUTPUT | GPIO_SPEED_50MHz | \
+                           GPIO_OUTPUT_CLEAR | GPIO_PORTE | GPIO_PIN8)
 
 /* Configure Interrupt pin equal the two digital channel inputs */
 
@@ -886,6 +901,18 @@ int stm32_mx25l_initialize(int minor);
 
 #ifdef CONFIG_RTC_PCF8563
 int stm32_pcf8563_init(void);
+#endif
+
+/****************************************************************************
+ * Name: stm32_gpio_initialize
+ *
+ * Description:
+ *   Initialize GPIO drivers for use with /apps/examples/gpio
+ *
+ ****************************************************************************/
+
+#ifdef CONFIG_DEV_GPIO
+int stm32_gpio_initialize(void);
 #endif
 
 #endif /* __ASSEMBLY__ */
