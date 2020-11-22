@@ -7,7 +7,7 @@
 Based in Ubuntu Unix Distro. Download packages and updates.
 
     $ sudo apt-get update
-    $ sudo apt-get install automake bison build-essential flex gcc-arm-none-eabi /
+    $ sudo apt-get install automake bison build-essential flex gcc-arm-none-eabi \
     gperf git libncurses5-dev libtool libusb-dev libusb-1.0.0-dev pkg-config
 
 ## Download the source codes
