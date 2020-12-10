@@ -6,62 +6,76 @@
 
 Based in Ubuntu Unix Distro. Download packages and updates.
 
-    $ sudo apt-get update
-    $ sudo apt-get install automake bison build-essential flex gcc-arm-none-eabi \
-    gperf git libncurses5-dev libtool libusb-dev libusb-1.0.0-dev pkg-config
+```
+$ sudo apt-get update
+$ sudo apt-get install automake bison build-essential flex gcc-arm-none-eabi gperf git libncurses5-dev libtool libusb-dev libusb-1.0.0-dev pkg-config
+```
 
 ## Download the source codes
 
 ### Nuttx
 
-    $ mkdir ~/nuttxspace
-    $ cd ~/nuttxspace
-    $ git clone https://github.com/phi-innovations/incubator-nuttx
-    $ mv incubator-nuttx nuttx
+```
+$ mkdir ~/nuttxspace
+$ cd ~/nuttxspace
+$ git clone https://github.com/phi-innovations/incubator-nuttx
+$ mv incubator-nuttx nuttx
+```
 
 ### Apps
 
-    $ git clone https://github.com/apache/incubator-nuttx-apps
-    $ mv incubator-nuttx-apps apps
-    $ git clone https://bitbucket.org/nuttx/tools
+```
+$ git clone https://github.com/apache/incubator-nuttx-apps
+$ mv incubator-nuttx-apps apps
+$ git clone https://bitbucket.org/nuttx/tools
+```
 
 ### Configure, compile and install the Kconfig-Frontends (needed by NuttX’s menuconfig)
 
-    $ cd ~/nuttxspace
-    $ cd tools/kconfig-frontends/
-    $ ./configure
-    $ make
-    $ sudo make install
-    $ sudo ldconfig
+```
+$ cd ~/nuttxspace
+$ cd tools/kconfig-frontends/
+$ ./configure
+$ make
+$ sudo make install
+$ sudo ldconfig
+```
 
 ### Goto phi-discovery branch
 
-    $ cd ~/nuttxpace/nuttx
-    $ git checkout phi-discovery
-    $ ./tools/configure.sh phi-innovations:iotgw
+```
+$ cd ~/nuttxpace/nuttx
+$ git checkout phi-discovery
+$ ./tools/configure.sh phi-innovations:iotgw
+```
 
 ### Generate firmware (j6 if CPU is six core, j4 if quad-core and so on)
-    $ make -j6
+
+```
+$ make -j6
+```
 
 ### Using JLink Software
 
-* Follow the link to install the software
-
-    https://eclipse-embed-cdt.github.io/debug/jlink/install/
+* Follow the link to install the software: https://eclipse-embed-cdt.github.io/debug/jlink/install/
 
 * Create a file in $HOME/nuttx/jlink/phigw.jlink with the content (please change the path in loadbin):
 
-    device STM32F417VE
-    si 1
-    speed 4000
-    loadbin /home/oliver/nuttxpace/nuttx/nuttx.bin, 0x00
-    r
-    g
-    q
+```
+device STM32F417VE
+si 1
+speed 4000
+loadbin /home/oliver/nuttxpace/nuttx/nuttx.bin, 0x00
+r
+g
+q
+```
 
 * Write the binary with the command (please change the path)
 
-    JLinkExe -commanderscript $HOME/nuttx/jlink/phigw.jlink
+```
+$ JLinkExe -commanderscript $HOME/nuttx/jlink/phigw.jlink
+```
 
 ### Use VSCode to debug code. Instructions from:
 
@@ -77,6 +91,7 @@ Based in Ubuntu Unix Distro. Download packages and updates.
 
 ## With VSCode, bellow is an example of the Json configuration
 
+```
     {
       // Use IntelliSense to learn about possible attributes.
       // Hover to view descriptions of existing attributes.
@@ -116,8 +131,12 @@ Based in Ubuntu Unix Distro. Download packages and updates.
         }
         ]
     }
+```
 
 # Create .bashrc alias
 
-    alias writes='JLinkExe -commanderscript $HOME/nuttx/jlink/phigw.jlink'
-    alias sall='make distclean -j4;./tools/configure.sh phi-innovations:iotgw;make -j6
+```
+alias writes='JLinkExe -commanderscript $HOME/nuttx/jlink/phigw.jlink'
+alias sall='make distclean -j4;./tools/configure.sh phi-innovations:iotgw;make -j6
+```
+
