@@ -85,6 +85,7 @@
 #  undef HAVE_USBDEV
 #  undef HAVE_USBHOST
 #  undef HAVE_USBMONITOR
+# error "Entrei aqui OTFGS"
 #endif
 
 /* Can't support USB device monitor if USB device is not enabled */
@@ -92,6 +93,7 @@
 #ifndef CONFIG_USBDEV
 #  undef HAVE_USBDEV
 #  undef HAVE_USBMONITOR
+# error "Entrei aqui USBDEV"
 #endif
 
 /* Can't support USB host is USB host is not enabled */
