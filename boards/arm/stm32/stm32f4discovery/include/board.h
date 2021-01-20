@@ -272,12 +272,12 @@
  * STM32F4DIS-BB.
  */
 
-#ifndef CONFIG_STM32F4DISBB
+//#ifndef CONFIG_STM32F4DISBB
 #  define GPIO_USART2_RX  GPIO_USART2_RX_1     /* PA3 */
 #  define GPIO_USART2_TX  GPIO_USART2_TX_2     /* PD5 */
 #  define GPIO_USART2_CTS GPIO_USART2_CTS_2    /* PD3 */
 #  define GPIO_USART2_RTS GPIO_USART2_RTS_2    /* PD4 */
-#endif
+//#endif
 
 /* USART3:
  *
