@@ -64,6 +64,7 @@
 #define STM32F4_LED2      (1 << 1)
 #define STM32F4_LED3      (1 << 2)
 #define STM32F4_LED4      (1 << 3)
+#define STM32F4_LED5      (1 << 4)
 
 #define ON_SETBITS_SHIFT  (0)
 #define ON_CLRBITS_SHIFT  (4)
@@ -176,6 +177,12 @@ static inline void led_clrbits(unsigned int clrbits)
     {
       stm32_gpiowrite(GPIO_LED4, false);
     }
+
+  if ((clrbits & STM32F4_LED5) != 0)
+    {
+      stm32_gpiowrite(GPIO_LED5, false);
+    }
+
 }
 
 static inline void led_setbits(unsigned int setbits)
@@ -199,6 +206,12 @@ static inline void led_setbits(unsigned int setbits)
     {
       stm32_gpiowrite(GPIO_LED4, true);
     }
+
+  if ((setbits & STM32F4_LED5) != 0)
+    {
+      stm32_gpiowrite(GPIO_LED5, true);
+    }
+
 }
 
 static void led_setonoff(unsigned int bits)
@@ -223,6 +236,7 @@ void board_autoled_initialize(void)
    stm32_configgpio(GPIO_LED2);
    stm32_configgpio(GPIO_LED3);
    stm32_configgpio(GPIO_LED4);
+   stm32_configgpio(GPIO_LED5);
 }
 
 /****************************************************************************

@@ -215,19 +215,21 @@
 /* LEDs */
 
 #define GPIO_LED1       (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                         GPIO_OUTPUT_CLEAR|GPIO_PORTD|GPIO_PIN12)
+                         GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN6)
 #define GPIO_LED2       (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                         GPIO_OUTPUT_CLEAR|GPIO_PORTD|GPIO_PIN13)
+                         GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN5)
 #define GPIO_LED3       (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                         GPIO_OUTPUT_CLEAR|GPIO_PORTD|GPIO_PIN14)
+                         GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN2)
 #define GPIO_LED4       (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                         GPIO_OUTPUT_CLEAR|GPIO_PORTD|GPIO_PIN15)
+                         GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN3)
+#define GPIO_LED5       (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
+                         GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN4)
 
 /* BUTTONS -- NOTE that all have EXTI interrupts configured */
 
 #define MIN_IRQBUTTON   BUTTON_USER
 #define MAX_IRQBUTTON   BUTTON_USER
-#define NUM_IRQBUTTONS  1
+#define NUM_IRQBUTTONS  0
 
 #define GPIO_BTN_USER   (GPIO_INPUT|GPIO_FLOAT|GPIO_EXTI|GPIO_PORTA|GPIO_PIN0)
 
@@ -360,7 +362,7 @@
 #  define GPIO_EMAC_NINT  (GPIO_INPUT|GPIO_PULLUP|GPIO_EXTI|\
                            GPIO_PORTA|GPIO_PIN1)
 #  define GPIO_EMAC_NRST  (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                           GPIO_OUTPUT_SET|GPIO_PORTE|GPIO_PIN2)
+                           GPIO_OUTPUT_SET|GPIO_PORTA|GPIO_PIN0)
 #endif
 
 /****************************************************************************
