@@ -256,6 +256,12 @@
 #  define GPIO_CAN2_TX GPIO_CAN2_TX_1
 #endif
 
+/*
+ * USART1:
+ */
+#define GPIO_USART1_RX GPIO_USART1_RX_1
+#define GPIO_USART1_TX GPIO_USART1_TX_1
+
 /* USART2:
  *
  * The STM32F4 Discovery has no on-board serial devices, but the console is
@@ -267,10 +273,10 @@
  */
 
 #ifndef CONFIG_STM32F4DISBB
-#  define GPIO_USART2_RX  GPIO_USART2_RX_1     /* PA3, P1 pin 13 */
-#  define GPIO_USART2_TX  GPIO_USART2_TX_1     /* PA2, P1 pin 14 */
-#  define GPIO_USART2_CTS GPIO_USART2_CTS_1    /* PA0, P1 pin 11 */
-#  define GPIO_USART2_RTS GPIO_USART2_RTS_1    /* PA1, P1 pin 12 (conflict with USER button) */
+#  define GPIO_USART2_RX  GPIO_USART2_RX_1     /* PA3 */
+#  define GPIO_USART2_TX  GPIO_USART2_TX_2     /* PD5 */
+#  define GPIO_USART2_CTS GPIO_USART2_CTS_2    /* PD3 */
+#  define GPIO_USART2_RTS GPIO_USART2_RTS_2    /* PD4 */
 #endif
 
 /* USART3:
@@ -289,10 +295,14 @@
  * enabled if USART3 is used in a configuration with the STM32F4DIS-BB.
  */
 
-#define GPIO_USART3_TX    GPIO_USART3_TX_1     /* PB10, P1 pin 34 (also MP45DT02 CLK_IN) */
-#define GPIO_USART3_RX    GPIO_USART3_RX_1     /* PB11, P1 pin 35 */
-#define GPIO_USART3_CTS   GPIO_USART3_CTS_1    /* PB13, P1 pin 37 */
-#define GPIO_USART3_RTS   GPIO_USART3_RTS_1    /* PB14, P1 pin 38 */
+#define GPIO_USART3_TX    GPIO_USART3_TX_1     /* PB10 */
+#define GPIO_USART3_RX    GPIO_USART3_RX_3     /* PD9  */
+#define GPIO_USART3_RS485_DIR (GPIO_OUTPUT | GPIO_OUTPUT | GPIO_SPEED_50MHz | \
+		GPIO_OUTPUT_CLEAR | GPIO_PORTD | GPIO_PIN12)
+
+
+//#define GPIO_USART3_CTS   GPIO_USART3_CTS_1    /* PB13, P1 pin 37 */
+//#define GPIO_USART3_RTS   GPIO_USART3_RTS_1    /* PB14, P1 pin 38 */
 
 /* USART6:
  *
