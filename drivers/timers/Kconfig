@@ -273,6 +273,24 @@ config PCF85263_I2C_FREQUENCY
 
 endif # RTC_PCF85263
 
+config RTC_PCF8563
+	bool "PCF8563 RTC Driver"
+	default n
+	select I2C
+	select RTC_DATETIME
+	depends on RTC_EXTERNAL
+	---help---
+		Enables support for the NXP PCF8563 I2C RTC timer.
+
+if RTC_PCF8563
+
+config PCF8563_I2C_FREQUENCY
+	int "PCF8563 I2C frequency"
+	default 400000
+	range 1 400000
+
+endif # RTC_PCF8563
+
 config RTC_MCP794XX
 	bool "MCP794XX RTC Driver"
 	default n

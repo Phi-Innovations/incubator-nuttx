@@ -848,5 +848,17 @@ int stm32_gs2200m_initialize(FAR const char *devpath, int bus);
 
 int stm32_mx25l_initialize(int minor);
 
+/****************************************************************************
+ * Name: stm32_pcf8563_init
+ *
+ * Description:
+ *   Initialize and register the PCF8563 RTC
+ *
+ ****************************************************************************/
+
+#ifdef CONFIG_RTC_PCF8563
+int stm32_pcf8563_init(void);
+#endif
+
 #endif /* __ASSEMBLY__ */
 #endif /* __BOARDS_ARM_STM32_STM32F4DISCOVERY_SRC_STM32F4DISCOVERY_H */

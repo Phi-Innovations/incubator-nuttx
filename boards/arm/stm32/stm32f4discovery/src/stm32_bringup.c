@@ -538,5 +538,17 @@ int stm32_bringup(void)
   }
 #endif /* CONFIG_MTD_MX25L */
 
+#ifdef CONFIG_RTC_PCF8563
+  /* Initialize a PCF8563 RTC device driver */
+
+  ret = stm32_pcf8563_init();
+  if (ret < 0)
+    {
+       syslog(LOG_ERR, "ERROR: stm32_pcf8563_init() failed: %d\n",
+                       ret);
+    }
+
+#endif
+
   return ret;
 }
