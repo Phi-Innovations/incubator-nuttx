@@ -337,7 +337,7 @@
 /* SPI - There is a MEMS device on SPI1 using these pins: */
 
 #define GPIO_SPI1_MISO    GPIO_SPI1_MISO_1
-#define GPIO_SPI1_MOSI    GPIO_SPI1_MOSI_1
+#define GPIO_SPI1_MOSI    GPIO_SPI1_MOSI_2
 #define GPIO_SPI1_SCK     GPIO_SPI1_SCK_1
 
 /* SPI DMA -- As used for I2S DMA transfer with the audio configuration */

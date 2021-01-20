@@ -191,6 +191,10 @@ ifeq ($(CONFIG_WL_GS2200M),y)
 CSRCS += stm32_gs2200m.c
 endif
 
+ifeq ($(CONFIG_MTD_MX25L),y)
+CSRCS += stm32_mx25l.c
+endif
+
 DEPPATH += --dep-path board
 VPATH += :board
 CFLAGS += $(shell $(INCDIR) "$(CC)" $(TOPDIR)$(DELIM)arch$(DELIM)$(CONFIG_ARCH)$(DELIM)src$(DELIM)board$(DELIM)board)

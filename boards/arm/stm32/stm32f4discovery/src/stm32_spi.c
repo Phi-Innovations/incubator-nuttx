@@ -69,40 +69,8 @@
 
 void weak_function stm32_spidev_initialize(void)
 {
-#ifdef CONFIG_ENC28J60
-  stm32_configgpio(GPIO_ENC28J60_CS);
-  stm32_configgpio(GPIO_ENC28J60_RESET);
-  stm32_configgpio(GPIO_ENC28J60_INTR);
-#endif
-
-#ifdef CONFIG_STM32_SPI1
-  stm32_configgpio(GPIO_CS_MEMS);    /* MEMS chip select */
-#endif
-#if defined(CONFIG_STM32_SPI2) && defined(CONFIG_SENSORS_MAX31855)
-  stm32_configgpio(GPIO_MAX31855_CS); /* MAX31855 chip select */
-#endif
-#if defined(CONFIG_LCD_MAX7219) || defined(CONFIG_LEDS_MAX7219)
-  stm32_configgpio(GPIO_MAX7219_CS);  /* MAX7219 chip select */
-#endif
-#ifdef CONFIG_LPWAN_SX127X
-  stm32_configgpio(GPIO_SX127X_CS);   /* SX127x chip select*/
-#endif
-
-#if defined(CONFIG_LCD_ST7567)
-  stm32_configgpio(STM32_LCD_CS);     /* ST7567 chip select */
-#endif
-#if defined(CONFIG_STM32_SPI2) && defined(CONFIG_SENSORS_MAX6675)
-  stm32_configgpio(GPIO_MAX6675_CS); /* MAX6675 chip select */
-#endif
-#if defined(CONFIG_LCD_UG2864AMBAG01) || defined(CONFIG_LCD_UG2864HSWEG01) || \
-    defined(CONFIG_LCD_SSD1351)
-  stm32_configgpio(GPIO_OLED_CS);    /* OLED chip select */
-# if defined(CONFIG_LCD_UG2864AMBAG01)
-  stm32_configgpio(GPIO_OLED_A0);    /* OLED Command/Data */
-# endif
-# if defined(CONFIG_LCD_UG2864HSWEG01) || defined(CONFIG_LCD_SSD1351)
-  stm32_configgpio(GPIO_OLED_DC);    /* OLED Command/Data */
-# endif
+#if defined(CONFIG_STM32_SPI1) && defined(CONFIG_MTD_MX25L)
+  stm32_configgpio(GPIO_MX25L_CS);    /* MEMS chip select */
 #endif
 }
 
@@ -137,55 +105,21 @@ void stm32_spi1select(FAR struct spi_dev_s *dev, uint32_t devid, bool selected)
 {
   spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" : "de-assert");
 
-#ifdef CONFIG_ENC28J60
-  if (devid == SPIDEV_ETHERNET(0))
+#ifdef CONFIG_MTD_MX25L
+  if (devid == SPIDEV_FLASH(0))
     {
       /* Set the GPIO low to select and high to de-select */
-
-      stm32_gpiowrite(GPIO_ENC28J60_CS, !selected);
+      stm32_gpiowrite(GPIO_MX25L_CS, !selected);
     }
 #endif
-
-#ifdef CONFIG_LPWAN_SX127X
-  if (devid == SPIDEV_LPWAN(0))
-    {
-      stm32_gpiowrite(GPIO_SX127X_CS, !selected);
-    }
-#endif
-
-#ifdef CONFIG_LCD_ST7567
-  if (devid == SPIDEV_DISPLAY(0))
-    {
-      stm32_gpiowrite(STM32_LCD_CS, !selected);
-    }
-#endif
-
-#if defined(CONFIG_LCD_MAX7219) || defined(CONFIG_LEDS_MAX7219)
-  if (devid == SPIDEV_DISPLAY(0))
-    {
-      stm32_gpiowrite(GPIO_MAX7219_CS, !selected);
-    }
-#endif
-
-#if defined(CONFIG_LCD_UG2864AMBAG01) || defined(CONFIG_LCD_UG2864HSWEG01) || \
-    defined(CONFIG_LCD_SSD1351)
-  if (devid == SPIDEV_DISPLAY(0))
-    {
-      stm32_gpiowrite(GPIO_OLED_CS, !selected);
-    }
-  else
-#endif
-    {
-      stm32_gpiowrite(GPIO_CS_MEMS, !selected);
-    }
 }
 
 uint8_t stm32_spi1status(FAR struct spi_dev_s *dev, uint32_t devid)
 {
   uint8_t status = 0;
 
-#ifdef CONFIG_LPWAN_SX127X
-  if (devid == SPIDEV_LPWAN(0))
+#ifdef CONFIG_MTD_MX25L
+  if (devid == SPIDEV_FLASH(0))
     {
       status |= SPI_STATUS_PRESENT;
     }
@@ -200,40 +134,11 @@ void stm32_spi2select(FAR struct spi_dev_s *dev, uint32_t devid, bool selected)
 {
   spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" : "de-assert");
 
-#if defined(CONFIG_SENSORS_MAX31855)
-  if (devid == SPIDEV_TEMPERATURE(0))
-    {
-      stm32_gpiowrite(GPIO_MAX31855_CS, !selected);
-    }
-#endif
-
-#if defined(CONFIG_SENSORS_MAX6675)
-  if (devid == SPIDEV_TEMPERATURE(0))
-    {
-      stm32_gpiowrite(GPIO_MAX6675_CS, !selected);
-    }
-#endif
-
-#if defined(CONFIG_MMCSD_SPI)
-  if (devid == SPIDEV_MMCSD(0))
-    {
-      stm32_gpiowrite(GPIO_MMCSD_NSS, !selected);
-    }
-#endif
 }
 
 uint8_t stm32_spi2status(FAR struct spi_dev_s *dev, uint32_t devid)
 {
   uint8_t ret = 0;
-#if defined(CONFIG_MMCSD_SPI)
-  if (devid == SPIDEV_MMCSD(0))
-    {
-      /* Note: SD_DET is pulled high when there's no SD card present. */
-
-      ret = stm32_gpioread(GPIO_MMCSD_NCD) ? 0 : 1;
-    }
-#endif
-
   return ret;
 }
 #endif
@@ -243,12 +148,6 @@ void stm32_spi3select(FAR struct spi_dev_s *dev, uint32_t devid, bool selected)
 {
   spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" : "de-assert");
 
-#if defined(CONFIG_WL_GS2200M)
-  if (devid == SPIDEV_WIRELESS(0))
-    {
-      stm32_gpiowrite(GPIO_GS2200M_CS, !selected);
-    }
-#endif
 }
 
 uint8_t stm32_spi3status(FAR struct spi_dev_s *dev, uint32_t devid)
@@ -284,41 +183,6 @@ uint8_t stm32_spi3status(FAR struct spi_dev_s *dev, uint32_t devid)
 #ifdef CONFIG_STM32_SPI1
 int stm32_spi1cmddata(FAR struct spi_dev_s *dev, uint32_t devid, bool cmd)
 {
-#ifdef CONFIG_LCD_ST7567
-  if (devid == SPIDEV_DISPLAY(0))
-    {
-      /*  This is the Data/Command control pad which determines whether the
-       *  data bits are data or a command.
-       */
-
-      stm32_gpiowrite(STM32_LCD_RS, !cmd);
-
-      return OK;
-    }
-#endif
-
-#if defined(CONFIG_LCD_UG2864AMBAG01) || defined(CONFIG_LCD_UG2864HSWEG01) || \
-    defined(CONFIG_LCD_SSD1351)
-  if (devid == SPIDEV_DISPLAY(0))
-    {
-      /* "This is the Data/Command control pad which determines whether the
-       *  data bits are data or a command.
-       *
-       *  A0 = "H": the inputs at D0 to D7 are treated as display data.
-       *  A0 = "L": the inputs at D0 to D7 are transferred to the command
-       *       registers."
-       */
-
-# if defined(CONFIG_LCD_UG2864AMBAG01)
-      stm32_gpiowrite(GPIO_OLED_A0, !cmd);
-# endif
-# if defined(CONFIG_LCD_UG2864HSWEG01) || defined(CONFIG_LCD_SSD1351)
-      stm32_gpiowrite(GPIO_OLED_DC, !cmd);
-# endif
-      return OK;
-    }
-#endif
-
   return -ENODEV;
 }
 #endif

@@ -526,5 +526,17 @@ int stm32_bringup(void)
     }
 #endif /* CONFIG_LPWAN_SX127X */
 
+#ifdef CONFIG_MTD_MX25L
+    /* Initialize a SPI FLASH block device mx25l MTD driver */
+  {
+    ret = stm32_mx25l_initialize(0);
+    if (ret < 0)
+      {
+        syslog(LOG_ERR, "ERROR: Failed to initialize mx25l MTD Flash driver:"
+                        " %d\n", ret);
+      }
+  }
+#endif /* CONFIG_MTD_MX25L */
+
   return ret;
 }

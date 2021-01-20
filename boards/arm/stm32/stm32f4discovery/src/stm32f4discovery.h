@@ -251,32 +251,7 @@
 
 /* SPI chip selects */
 
-#define GPIO_CS_MEMS      (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                           GPIO_OUTPUT_SET|GPIO_PORTE|GPIO_PIN3)
-
-#define GPIO_MAX31855_CS  (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                           GPIO_OUTPUT_SET|GPIO_PORTD|GPIO_PIN8)
-
-#define GPIO_MAX6675_CS   (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                           GPIO_OUTPUT_SET|GPIO_PORTD|GPIO_PIN8)
-
-#define GPIO_SX127X_CS    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                           GPIO_OUTPUT_SET|GPIO_PORTD|GPIO_PIN8)
-
-#define GPIO_MAX7219_CS   (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                           GPIO_OUTPUT_SET|GPIO_PORTC|GPIO_PIN3)
-
-#define GPIO_GS2200M_CS   (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                           GPIO_OUTPUT_SET|GPIO_PORTE|GPIO_PIN5)
-
-#define GPIO_ENC28J60_CS    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                             GPIO_OUTPUT_SET|GPIO_PORTA|GPIO_PIN4)
-
-#define GPIO_ENC28J60_RESET (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|\
-                             GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN1)
-
-#define GPIO_ENC28J60_INTR  (GPIO_INPUT|GPIO_FLOAT|GPIO_EXTI|\
-                             GPIO_OPENDRAIN|GPIO_PORTE|GPIO_PIN4)
+#define GPIO_MX25L_CS     (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTA|GPIO_PIN4)
 
 /* USB OTG FS
  *
@@ -862,6 +837,16 @@ int hciuart_dev_initialize(void);
 #ifdef CONFIG_WL_GS2200M
 int stm32_gs2200m_initialize(FAR const char *devpath, int bus);
 #endif
+
+/****************************************************************************
+ * Name: stm32_mx25l_initialize
+ *
+ * Description:
+ *   Called to initialize Macronix MX25L memory
+ *
+ ****************************************************************************/
+
+int stm32_mx25l_initialize(int minor);
 
 #endif /* __ASSEMBLY__ */
 #endif /* __BOARDS_ARM_STM32_STM32F4DISCOVERY_SRC_STM32F4DISCOVERY_H */
