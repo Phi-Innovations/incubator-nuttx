@@ -255,6 +255,31 @@
 
 #define GPIO_MX25L_CS     (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTA|GPIO_PIN4)
 
+/* GPIO pins used by the GPIO Subsystem */
+
+#define BOARD_NGPIOIN     2 /* Amount of GPIO Input pins */
+#define BOARD_NGPIOOUT    1 /* Amount of GPIO Output pins */
+#define BOARD_NGPIOINT    2 /* Amount of GPIO Input w/ Interruption pins */
+
+/* Digital Channel Input 1 */
+
+#define GPIO_IN1          (GPIO_INPUT | GPIO_FLOAT | GPIO_PORTB | GPIO_PIN0)
+
+/* Digital Channel Input 2 */
+
+#define GPIO_IN2          (GPIO_INPUT | GPIO_FLOAT | GPIO_PORTB | GPIO_PIN1)
+
+/* TODO: check OUT and INT GPIO */
+
+/* RF Chip Select */
+
+#define GPIO_OUT1         (GPIO_OUTPUT | GPIO_OUTPUT | GPIO_SPEED_50MHz | GPIO_OUTPUT_SET | GPIO_PORTA | GPIO_PIN15)
+
+/* Configure Interrupt pin equal the two digital channel inputs */
+
+#define GPIO_INT1         GPIO_IN1
+#define GPIO_INT2         GPIO_IN2
+
 /* USB OTG FS
  *
  * PA9  OTG_FS_VBUS VBUS sensing (also connected to the green LED)
